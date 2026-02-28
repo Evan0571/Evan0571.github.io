@@ -1,12 +1,6 @@
 {{- define "main" }}
 {{- $landing := site.Params.landing -}}
-{{- $notesURL := "https://evan0571.github.io/notes/" -}}
 {{- $githubURL := "https://github.com/Evan0571" -}}
-{{- range site.Menus.main -}}
-  {{- if eq .Identifier "notes" -}}
-    {{- $notesURL = .URL -}}
-  {{- end -}}
-{{- end -}}
 {{- with $landing.github -}}
   {{- $githubURL = . -}}
 {{- end -}}
@@ -21,7 +15,16 @@
 {{/* Hero: concise positioning and quick links. */}}
 <section class="home-hero">
   <div class="hero-main">
-    <h1>{{ site.Params.title | default site.Title }}</h1>
+    <div class="hero-id">
+      <div class="hero-avatar" aria-hidden="true">
+        {{- if $landing.avatar }}
+        <img src="{{ $landing.avatar | relURL }}" alt="{{ $landing.avatarAlt | default `Profile` }}">
+        {{- else }}
+        <span>ES</span>
+        {{- end }}
+      </div>
+      <h1>{{ site.Params.title | default site.Title }}</h1>
+    </div>
     <p class="hero-tagline">{{ $landing.tagline | default "Build quietly. Ship clearly." }}</p>
     {{- with $landing.intro }}
       {{- range first 2 . }}
@@ -31,18 +34,10 @@
       <p class="hero-intro">I write about backend engineering, systems thinking, and practical tools.</p>
       <p class="hero-intro">This is my public notebook for what I build and learn.</p>
     {{- end }}
+    <p class="hero-social">
+      <a href="{{ $githubURL }}">GitHub</a>
+    </p>
   </div>
-
-  <aside class="hero-links" aria-label="Quick links">
-    <h2>Quick links</h2>
-    <ul>
-      <li><a href="/posts/">Posts</a></li>
-      <li><a href="{{ $notesURL }}">Notes</a></li>
-      <li><a href="/search/">Search</a></li>
-      <li><a href="/archives/">Archives</a></li>
-      <li><a href="{{ $githubURL }}">GitHub</a></li>
-    </ul>
-  </aside>
 </section>
 
 {{/* Optional focus line for current priorities. */}}
@@ -60,14 +55,14 @@
   <div class="recent-list">
     {{- range $recent }}
     <article class="recent-item">
-      <time class="recent-date" datetime="{{ .Date.Format `2006-01-02` }}">{{ .Date | time.Format "2006-01-02" }}</time>
       <h3 class="recent-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+      <time class="recent-date" datetime="{{ .Date.Format `2006-01-02` }}">{{ .Date | time.Format "2006-01-02" }}</time>
       <p class="recent-summary">{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p>
     </article>
     {{- else }}
     <article class="recent-item">
-      <time class="recent-date">--</time>
       <h3 class="recent-title">No posts yet</h3>
+      <time class="recent-date">--</time>
       <p class="recent-summary">Create one with <code>hugo new content/posts/your-post.md</code>.</p>
     </article>
     {{- end }}

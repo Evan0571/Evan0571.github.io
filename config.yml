@@ -1,6 +1,6 @@
 baseURL: "https://evan0571.github.io/"
 languageCode: "zh-cn"
-title: "My Blog"
+title: "EvanSong's Blog"
 theme: "PaperMod"
 
 pagination:
@@ -17,7 +17,7 @@ minify:
 
 params:
   env: production
-  title: "Evan's Logbook"
+  title: "EvanSong's Blog"
   description: "Quiet notes on code, tools, and learning"
   author: "Evan0571"
   defaultTheme: auto
@@ -28,7 +28,7 @@ params:
   ShowBreadCrumbs: true
   comments: false
   landing:
-    tagline: "Build quietly. Ship clearly."
+    tagline: "\"Knowing yourself is the beginning of all wisdom\" -- Aristotle"
     focus: "Improving backend fundamentals and writing sharper engineering notes each week."
     github: "https://github.com/Evan0571"
     intro:
