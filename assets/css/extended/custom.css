@@ -138,21 +138,6 @@ h3 {
   color: var(--content);
 }
 
-.about-link {
-  margin: 0;
-}
-
-.about-link a {
-  color: var(--primary);
-  text-decoration: none;
-  border-bottom: 1px solid var(--line-strong);
-  padding-bottom: 1px;
-}
-
-.about-link a:hover {
-  color: var(--content);
-}
-
 /* Recent posts: strict list, not cards */
 .recent-section {
   margin-bottom: var(--space-3);

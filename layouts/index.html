@@ -29,7 +29,7 @@
 
   <div class="about-right">
     <p class="about-kicker">ABOUT</p>
-    <p class="about-quote">"Knowing yourself is the beginning of all wisdom" -- Aristotle</p>
+    <p class="about-quote"><em>"Knowing yourself is the beginning of all wisdom" -- Aristotle</em></p>
     {{- with $landing.intro }}
       {{- range first 2 . }}
       <p class="about-intro">{{ . }}</p>
@@ -38,7 +38,6 @@
       <p class="about-intro">I'm Evan, a CS student focused on practical engineering, backend systems, and developer tooling.</p>
       <p class="about-intro">This site is my public notebook for project logs, experiments, and lessons learned.</p>
     {{- end }}
-    <p class="about-link"><a href="{{ $githubURL }}">GitHub</a></p>
   </div>
 </section>
 
