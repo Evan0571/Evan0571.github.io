@@ -11,10 +11,14 @@
   --line: color-mix(in srgb, var(--secondary) 32%, transparent 68%);
   --line-strong: color-mix(in srgb, var(--secondary) 48%, transparent 52%);
   --shadow-soft: 0 3px 14px rgba(14, 18, 25, 0.05);
+  --bg-spot-1: rgba(80, 120, 220, 0.08);
+  --bg-spot-2: rgba(20, 90, 180, 0.05);
 }
 
 .dark {
   --shadow-soft: 0 4px 16px rgba(0, 0, 0, 0.28);
+  --bg-spot-1: rgba(70, 120, 220, 0.12);
+  --bg-spot-2: rgba(30, 70, 140, 0.1);
 }
 
 /* Typography and global rhythm */
@@ -23,6 +27,14 @@ body {
   font-family: "Inter", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.6;
+}
+
+body {
+  background:
+    radial-gradient(900px 420px at 8% -8%, var(--bg-spot-1), transparent 62%),
+    radial-gradient(760px 360px at 100% 0%, var(--bg-spot-2), transparent 58%),
+    var(--theme);
+  background-attachment: fixed;
 }
 
 h1,
