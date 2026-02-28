@@ -17,8 +17,8 @@ minify:
 
 params:
   env: production
-  title: "My Blog"
-  description: "Personal blog powered by Hugo PaperMod"
+  title: "Evan's Logbook"
+  description: "Quiet notes on code, tools, and learning"
   author: "Evan0571"
   defaultTheme: auto
   ShowReadingTime: true
@@ -46,6 +46,10 @@ menu:
       name: Archives
       url: /archives/
       weight: 40
+    - identifier: notes
+      name: Notes
+      url: https://evan0571.github.io/notes/
+      weight: 50
 
 outputs:
   home:
