@@ -27,6 +27,37 @@ params:
   ShowCodeCopyButtons: true
   ShowBreadCrumbs: true
   comments: false
+  landing:
+    tagline: "Build quietly. Ship clearly."
+    intro:
+      - "I'm Evan, a CS student focused on practical engineering, backend systems, and developer tooling."
+      - "This site is my public notebook for project logs, experiments, and lessons learned."
+    avatar: ""
+    avatarAlt: "Evan profile"
+    cta:
+      - label: "Read Posts"
+        url: "/posts/"
+      - label: "Open Notes"
+        url: "https://evan0571.github.io/notes/"
+      - label: "View Projects"
+        url: "#projects"
+    projects:
+      - title: "Campus Helper Bot"
+        description: "A workflow assistant that answers common campus questions and routes requests."
+        tags: ["TypeScript", "Supabase", "Telegram Bot API"]
+        url: "#"
+      - title: "Speech Summary Pipeline"
+        description: "Upload audio, transcribe asynchronously, then generate concise multilingual summaries."
+        tags: ["Node.js", "Queue", "Serverless"]
+        url: "#"
+      - title: "Personal Analytics Dashboard"
+        description: "A private dashboard for weekly goals, habit trends, and writing consistency."
+        tags: ["React", "PostgreSQL", "Charts"]
+        url: "#"
+      - title: "Markdown Knowledge Base"
+        description: "A searchable note system with structured docs and lightweight publishing flow."
+        tags: ["MkDocs", "GitHub Actions", "Material"]
+        url: "#"
 
 menu:
   main:

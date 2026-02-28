@@ -1,37 +1,8 @@
-:root {
-  --theme: #f6f1e8;
-  --entry: #fffaf2;
-  --primary: #1f1d1a;
-  --secondary: #5a5349;
-  --tertiary: #7a7268;
-  --content: #201d19;
-  --hljs-bg: #f1eadf;
-  --code-bg: #efe7da;
-  --code-block-bg: #efe7da;
-  --border: #ded3c2;
-}
-
-.dark {
-  --theme: #141311;
-  --entry: #1c1a17;
-  --primary: #ebe2d5;
-  --secondary: #b8ab9a;
-  --tertiary: #978b7c;
-  --content: #e6ddcf;
-  --hljs-bg: #22201c;
-  --code-bg: #24211d;
-  --code-block-bg: #24211d;
-  --border: #3a342c;
-}
+/* Supplemental tweaks. Core design tokens live in custom.css. */
 
 .logo a {
   letter-spacing: 0.02em;
   font-weight: 700;
-}
-
-.post-entry {
-  border-radius: 14px;
-  border: 1px solid var(--border);
 }
 
 .post-title {

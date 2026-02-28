@@ -1,0 +1,103 @@
+{{- define "main" }}
+{{- $landing := site.Params.landing -}}
+{{- $notesURL := "https://evan0571.github.io/notes/" -}}
+{{- range site.Menus.main -}}
+  {{- if eq .Identifier "notes" -}}
+    {{- $notesURL = .URL -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections -}}
+{{- if not (gt (len $pages) 0) -}}
+  {{- $pages = site.RegularPages -}}
+{{- end -}}
+{{- $pages = where $pages "Params.hiddenInHomeList" "!=" "true" -}}
+{{- $recent := first 5 ($pages.ByDate.Reverse) -}}
+
+<section class="landing-hero">
+  <div class="landing-avatar" aria-hidden="true">
+    {{- if $landing.avatar }}
+    <img src="{{ $landing.avatar | relURL }}" alt="{{ $landing.avatarAlt | default `Profile` }}">
+    {{- else }}
+    <span>EV</span>
+    {{- end }}
+  </div>
+  <div class="landing-copy">
+    <p class="landing-tagline">{{ $landing.tagline | default "Build quietly. Ship clearly." }}</p>
+    <h1>Evan's Logbook</h1>
+    {{- with $landing.intro }}
+      {{- range . }}
+      <p>{{ . }}</p>
+      {{- end }}
+    {{- else }}
+      <p>Practical notes on software engineering, systems, and shipped projects.</p>
+      <p>Focused on clear thinking, maintainable code, and steady iteration.</p>
+    {{- end }}
+    <div class="landing-cta">
+      <a class="button primary" href="/posts/">Posts</a>
+      <a class="button" href="{{ $notesURL }}">Notes</a>
+      <a class="button" href="#projects">Projects</a>
+    </div>
+  </div>
+</section>
+
+<section class="landing-grid">
+  <div class="landing-column">
+    <header class="section-head">
+      <h2 id="projects">Projects</h2>
+      <a href="/archives/" class="section-link">Browse archives</a>
+    </header>
+    <div class="project-grid">
+      {{- if $landing.projects }}
+        {{- range $landing.projects }}
+        <article class="project-card">
+          <h3>{{ .title }}</h3>
+          <p>{{ .description }}</p>
+          <ul class="tag-list">
+            {{- range .tags }}
+            <li>{{ . }}</li>
+            {{- end }}
+          </ul>
+          <a class="project-link" href="{{ .url | default `#` }}">View details</a>
+        </article>
+        {{- end }}
+      {{- else }}
+        {{- range seq 1 4 }}
+        <article class="project-card">
+          <h3>Project {{ . }}</h3>
+          <p>Brief description of the project scope, problem, and outcome.</p>
+          <ul class="tag-list">
+            <li>Tech</li>
+            <li>Stack</li>
+            <li>Notes</li>
+          </ul>
+          <a class="project-link" href="#">View details</a>
+        </article>
+        {{- end }}
+      {{- end }}
+    </div>
+  </div>
+
+  <aside class="landing-column">
+    <header class="section-head">
+      <h2>Recent Posts</h2>
+      <a href="/posts/" class="section-link">All posts</a>
+    </header>
+    <div class="recent-list">
+      {{- range $recent }}
+      <article class="recent-card">
+        <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+        <p class="recent-meta">{{ .Date | time.Format ":date_medium" }}</p>
+        <p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p>
+      </article>
+      {{- else }}
+      <article class="recent-card">
+        <h3>No posts yet</h3>
+        <p>Start with: <code>hugo new content/posts/your-post.md</code></p>
+      </article>
+      {{- end }}
+    </div>
+  </aside>
+</section>
+{{- end }}
+
