@@ -1,0 +1,54 @@
+baseURL: "https://evan0571.github.io/"
+languageCode: "zh-cn"
+title: "My Blog"
+theme: "PaperMod"
+
+pagination:
+  pagerSize: 10
+
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+minify:
+  disableXML: true
+  minifyOutput: true
+
+params:
+  env: production
+  title: "My Blog"
+  description: "Personal blog powered by Hugo PaperMod"
+  author: "Evan0571"
+  defaultTheme: auto
+  ShowReadingTime: true
+  ShowShareButtons: true
+  ShowPostNavLinks: true
+  ShowCodeCopyButtons: true
+  ShowBreadCrumbs: true
+  comments: false
+
+menu:
+  main:
+    - identifier: home
+      name: Home
+      url: /
+      weight: 10
+    - identifier: posts
+      name: Posts
+      url: /posts/
+      weight: 20
+    - identifier: search
+      name: Search
+      url: /search/
+      weight: 30
+    - identifier: archives
+      name: Archives
+      url: /archives/
+      weight: 40
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
