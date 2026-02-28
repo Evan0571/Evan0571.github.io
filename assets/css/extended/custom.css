@@ -106,49 +106,27 @@ pre code {
 */
 .home-hero {
   display: block;
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--line);
 }
 
-.hero-id {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  margin-bottom: var(--space-1);
-}
-
-.hero-avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 1px solid var(--line);
-  background: var(--surface);
+.hero-kicker {
+  margin: 0 0 var(--space-2);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   color: var(--muted);
-  display: grid;
-  place-items: center;
-  font-family: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 0.74rem;
   font-weight: 600;
-  overflow: hidden;
-}
-
-.hero-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.hero-main h1 {
-  margin: 0 0 var(--space-1);
-  font-size: clamp(1.95rem, 3.3vw, 2.6rem);
-  font-family: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-weight: 700;
 }
 
 .hero-tagline {
   margin: 0 0 var(--space-2);
-  color: var(--muted);
-  font-size: 1rem;
-  font-weight: 500;
+  color: var(--text);
+  font-size: clamp(1.18rem, 2vw, 1.38rem);
+  line-height: 1.4;
+  max-width: 58ch;
+  font-family: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
 .hero-intro {
@@ -170,31 +148,6 @@ pre code {
 .hero-social a:hover {
   text-decoration: underline;
   text-underline-offset: 2px;
-}
-
-.focus-strip {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  align-items: baseline;
-  gap: var(--space-2);
-  margin: 0 0 var(--space-5);
-  padding: var(--space-2) var(--space-3);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  background: color-mix(in srgb, var(--surface2) 76%, transparent 24%);
-}
-
-.focus-label {
-  color: var(--accent);
-  font-weight: 600;
-  white-space: nowrap;
-  font-family: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 0.86rem;
-}
-
-.focus-strip p {
-  margin: 0;
-  color: var(--text);
 }
 
 /*

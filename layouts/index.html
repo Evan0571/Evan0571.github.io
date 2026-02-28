@@ -15,16 +15,7 @@
 {{/* Hero: concise positioning and quick links. */}}
 <section class="home-hero">
   <div class="hero-main">
-    <div class="hero-id">
-      <div class="hero-avatar" aria-hidden="true">
-        {{- if $landing.avatar }}
-        <img src="{{ $landing.avatar | relURL }}" alt="{{ $landing.avatarAlt | default `Profile` }}">
-        {{- else }}
-        <span>ES</span>
-        {{- end }}
-      </div>
-      <h1>{{ site.Params.title | default site.Title }}</h1>
-    </div>
+    <p class="hero-kicker">About</p>
     <p class="hero-tagline">{{ $landing.tagline | default "Build quietly. Ship clearly." }}</p>
     {{- with $landing.intro }}
       {{- range first 2 . }}
@@ -38,12 +29,6 @@
       <a href="{{ $githubURL }}">GitHub</a>
     </p>
   </div>
-</section>
-
-{{/* Optional focus line for current priorities. */}}
-<section class="focus-strip">
-  <span class="focus-label">Currently</span>
-  <p>{{ $landing.focus | default "Sharpening fundamentals in distributed systems and publishing clearer technical notes." }}</p>
 </section>
 
 {{/* Recent posts: list layout (date + title + summary), max 5 entries. */}}
