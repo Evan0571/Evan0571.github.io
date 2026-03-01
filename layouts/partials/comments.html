@@ -1,0 +1,25 @@
+{{- $g := site.Params.giscus -}}
+{{- if and $g.enabled $g.repo $g.repoId $g.category $g.categoryId -}}
+<section class="comments giscus-wrap">
+  <script
+    src="https://giscus.app/client.js"
+    data-repo="{{ $g.repo }}"
+    data-repo-id="{{ $g.repoId }}"
+    data-category="{{ $g.category }}"
+    data-category-id="{{ $g.categoryId }}"
+    data-mapping="{{ $g.mapping | default `pathname` }}"
+    data-strict="{{ $g.strict | default `0` }}"
+    data-reactions-enabled="{{ $g.reactionsEnabled | default `1` }}"
+    data-emit-metadata="{{ $g.emitMetadata | default `0` }}"
+    data-input-position="{{ $g.inputPosition | default `top` }}"
+    data-theme="{{ $g.theme | default `preferred_color_scheme` }}"
+    data-lang="{{ $g.lang | default `en` }}"
+    crossorigin="anonymous"
+    async>
+  </script>
+</section>
+{{- else if hugo.IsServer -}}
+<section class="comments giscus-wrap">
+  <p><strong>Giscus not fully configured.</strong> Fill <code>params.giscus.repoId</code> and <code>params.giscus.categoryId</code> in <code>config.yml</code>.</p>
+</section>
+{{- end -}}

@@ -26,7 +26,20 @@ params:
   ShowPostNavLinks: true
   ShowCodeCopyButtons: true
   ShowBreadCrumbs: true
-  comments: false
+  comments: true
+  giscus:
+    enabled: true
+    repo: "Evan0571/Evan0571.github.io"
+    repoId: "R_kgDORbXAOA"
+    category: "Announcements"
+    categoryId: "DIC_kwDORbXAOM4C3cdd"
+    mapping: "pathname"
+    strict: "0"
+    reactionsEnabled: "1"
+    emitMetadata: "0"
+    inputPosition: "top"
+    lang: "zh-CN"
+    theme: "preferred_color_scheme"
   landing:
     tagline: "\"Knowing yourself is the beginning of all wisdom\" -- Aristotle"
     focus: "Improving backend fundamentals and writing sharper engineering notes each week."
