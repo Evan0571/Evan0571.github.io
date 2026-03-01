@@ -242,6 +242,16 @@ h3 {
   box-shadow: var(--shadow-soft);
 }
 
+/* Extra breathing room on the links page to avoid footer divider overlap */
+.post-content .friend-card:last-of-type {
+  margin-bottom: calc(var(--space-4) + 4px);
+}
+
+.post-content .links-note {
+  margin: 0 0 var(--space-3);
+  color: var(--secondary);
+}
+
 .friend-card-link {
   display: flex;
   gap: var(--space-2);
