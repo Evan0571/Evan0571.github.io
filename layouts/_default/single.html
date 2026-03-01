@@ -1,4 +1,4 @@
-{{- define "main" }}
+ï»¿{{- define "main" }}
 
 <article class="post-single">
   <header class="post-header">
@@ -22,7 +22,7 @@
     {{- if not (.Param "hideMeta") }}
     <div class="post-meta">
       {{- partial "post_meta.html" . -}}
-      <span class="post-meta-views" id="busuanzi_container_page_pv">&nbsp;¡¤&nbsp;Views: <span id="busuanzi_value_page_pv"></span></span>
+      <span class="post-meta-views" id="busuanzi_container_page_pv">&nbsp;&middot;&nbsp;Views: <span id="busuanzi_value_page_pv"></span></span>
       {{- partial "translation_list.html" . -}}
       {{- partial "edit_post.html" . -}}
       {{- partial "post_canonical.html" . -}}
@@ -64,3 +64,4 @@
 </article>
 
 {{- end }}{{/* end main */}}
+
