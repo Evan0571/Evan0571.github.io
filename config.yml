@@ -15,6 +15,11 @@ minify:
   disableXML: true
   minifyOutput: true
 
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
 params:
   env: production
   title: "EvanSong's Blog"

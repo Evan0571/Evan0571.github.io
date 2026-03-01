@@ -7,6 +7,7 @@ comments: false
 
 ## Link Exchange
 
+<div class="links-page">
 {{< friend-card
   name="The EXCITED State"
   url="https://excitedstate.us.kg"
@@ -15,3 +16,4 @@ comments: false
 >}}
 
 {{< links-note url="https://github.com/Evan0571/Evan0571.github.io/issues" >}}
+</div>

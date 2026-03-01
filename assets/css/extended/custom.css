@@ -243,26 +243,26 @@ h3 {
 }
 
 /* Extra breathing room on the links page to avoid footer divider overlap */
-.post-content .friend-card:last-of-type {
+.links-page .friend-card:last-of-type {
   margin-bottom: calc(var(--space-4) + 4px);
 }
 
-.post-content .links-note {
+.links-page .links-note {
   margin: calc(-1 * var(--space-2)) 0 var(--space-3);
   color: var(--secondary, rgba(0, 0, 0, 0.65));
 }
 
-.dark .post-content .links-note {
+.dark .links-page .links-note {
   color: var(--secondary, rgba(255, 255, 255, 0.72));
 }
 
-/* Links-page local fix: hide or soften unexpected divider under friend card */
-.post-content .friend-card + hr,
-.post-content .links-note + hr {
+/* Links-page local fix: remove unexpected divider (<hr>) inside links content */
+.links-page hr {
   display: none;
 }
 
-.post-content .friend-card + *[style*="border-top"] {
+/* If any local separators are injected, keep them very subtle in links page */
+.links-page *[style*="border-top"] {
   border-top-color: rgba(0, 0, 0, 0.08) !important;
 }
 
