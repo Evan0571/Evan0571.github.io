@@ -1,0 +1,10 @@
+<article class="friend-card">
+  <a class="friend-card-link" href="{{ .Get "url" }}" target="_blank" rel="noopener noreferrer">
+    <img class="friend-avatar" src="{{ .Get "avatar" }}" alt="{{ .Get "name" }} avatar" loading="lazy" />
+    <div class="friend-body">
+      <h3 class="friend-name">{{ .Get "name" }}</h3>
+      <p class="friend-desc">{{ .Get "desc" }}</p>
+      <span class="friend-url">{{ .Get "url" }}</span>
+    </div>
+  </a>
+</article>
