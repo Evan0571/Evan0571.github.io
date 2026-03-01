@@ -46,7 +46,7 @@ params:
     github: "https://github.com/Evan0571"
     intro:
       - "I'm Evan, a CS student focused on practical engineering, backend systems, and developer tooling."
-      - "This site is my public notebook for project logs, experiments, and lessons learned."
+      - "This site is used to share my ideas, notes and experiences."
     avatar: ""
     avatarAlt: "Evan profile"
     cta:
