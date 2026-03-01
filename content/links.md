@@ -13,3 +13,5 @@ comments: false
   avatar="https://github.com/PKChemLAB.png"
   desc="Life is nothing but an electron looking for a place to rest."
 >}}
+
+If you want to exchange links, feel free to contact me via [GitHub Issues](https://github.com/Evan0571/Evan0571.github.io/issues).

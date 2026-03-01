@@ -235,7 +235,7 @@ h3 {
 
 /* Friend links card */
 .friend-card {
-  margin: 0 0 var(--space-2);
+  margin: 0 0 var(--space-3);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: color-mix(in srgb, var(--entry) 92%, transparent 8%);
@@ -251,8 +251,8 @@ h3 {
 }
 
 .friend-avatar {
-  width: 64px;
-  height: 64px;
+  width: 80px;
+  height: 80px;
   border-radius: 999px;
   object-fit: cover;
   border: 1px solid var(--line);
