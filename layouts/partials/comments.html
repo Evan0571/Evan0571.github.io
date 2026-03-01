@@ -1,42 +1,72 @@
 {{- $g := site.Params.giscus -}}
 {{- if and $g.enabled $g.repo $g.repoId $g.category $g.categoryId -}}
 <section class="comments giscus-wrap">
-  <script
-    src="https://giscus.app/client.js"
-    data-repo="{{ $g.repo }}"
-    data-repo-id="{{ $g.repoId }}"
-    data-category="{{ $g.category }}"
-    data-category-id="{{ $g.categoryId }}"
-    data-mapping="{{ $g.mapping | default `pathname` }}"
-    data-strict="{{ $g.strict | default `0` }}"
-    data-reactions-enabled="{{ $g.reactionsEnabled | default `1` }}"
-    data-emit-metadata="{{ $g.emitMetadata | default `0` }}"
-    data-input-position="{{ $g.inputPosition | default `top` }}"
-    data-theme="{{ $g.theme | default `preferred_color_scheme` }}"
-    data-lang="{{ $g.lang | default `en` }}"
-    crossorigin="anonymous"
-    async>
-  </script>
+  <div id="giscus_thread"></div>
   <script>
     (function () {
-      function currentTheme() {
-        return document.body.classList.contains("dark") ? "dark" : "light";
+      function currentThemeName() {
+        var htmlTheme = document.documentElement.getAttribute("data-theme");
+        if (document.body.classList.contains("dark") || htmlTheme === "dark") return "dark";
+        if (htmlTheme === "light") return "light";
+        return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
       }
-      function syncGiscusTheme() {
+
+      function setGiscusTheme(theme) {
         var iframe = document.querySelector("iframe.giscus-frame");
-        if (!iframe) return;
+        if (!iframe) return false;
         iframe.contentWindow.postMessage(
-          { giscus: { setConfig: { theme: currentTheme() } } },
+          { giscus: { setConfig: { theme: theme } } },
           "https://giscus.app"
         );
+        return true;
       }
-      var observer = new MutationObserver(syncGiscusTheme);
-      observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
-      document.addEventListener("DOMContentLoaded", function () {
-        setTimeout(syncGiscusTheme, 300);
+
+      function mountGiscus() {
+        var host = document.getElementById("giscus_thread");
+        if (!host || host.querySelector("script")) return;
+        var script = document.createElement("script");
+        script.src = "https://giscus.app/client.js";
+        script.crossOrigin = "anonymous";
+        script.async = true;
+        script.setAttribute("data-repo", "{{ $g.repo }}");
+        script.setAttribute("data-repo-id", "{{ $g.repoId }}");
+        script.setAttribute("data-category", "{{ $g.category }}");
+        script.setAttribute("data-category-id", "{{ $g.categoryId }}");
+        script.setAttribute("data-mapping", "{{ $g.mapping | default `pathname` }}");
+        script.setAttribute("data-strict", "{{ $g.strict | default `0` }}");
+        script.setAttribute("data-reactions-enabled", "{{ $g.reactionsEnabled | default `1` }}");
+        script.setAttribute("data-emit-metadata", "{{ $g.emitMetadata | default `0` }}");
+        script.setAttribute("data-input-position", "{{ $g.inputPosition | default `top` }}");
+        script.setAttribute("data-theme", currentThemeName());
+        script.setAttribute("data-lang", "{{ $g.lang | default `en` }}");
+        host.appendChild(script);
+      }
+
+      function syncThemeWithRetry() {
+        var tries = 0;
+        var timer = setInterval(function () {
+          tries += 1;
+          if (setGiscusTheme(currentThemeName()) || tries > 20) clearInterval(timer);
+        }, 120);
+      }
+
+      mountGiscus();
+      syncThemeWithRetry();
+
+      var observer = new MutationObserver(function () {
+        setGiscusTheme(currentThemeName());
       });
+      observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+      observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+
       var toggle = document.getElementById("theme-toggle");
-      if (toggle) toggle.addEventListener("click", function () { setTimeout(syncGiscusTheme, 120); });
+      if (toggle) {
+        toggle.addEventListener("click", function () {
+          setTimeout(function () {
+            setGiscusTheme(currentThemeName());
+          }, 120);
+        });
+      }
     })();
   </script>
 </section>
