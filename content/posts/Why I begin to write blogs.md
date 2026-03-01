@@ -9,7 +9,7 @@ description: "My First Blog"
 
 So, why did I start writing a blog?
 
-Because I want to write something to record what I think and what I want to do. 
+I want to write something to record what I think and what I want to do. 
 
 I had this idea when I was a kid, even though I don't know what is "Blog" at that time. At that time, I had already realized that I would forget everything I thought if there are no media to record my ideas. The fact is I was right. 
 
