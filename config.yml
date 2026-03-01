@@ -96,6 +96,10 @@ menu:
       name: Notes
       url: https://evan0571.github.io/notes/
       weight: 50
+    - identifier: friends
+      name: Friends
+      url: /friends/
+      weight: 60
 
 outputs:
   home:
