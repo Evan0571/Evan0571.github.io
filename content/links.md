@@ -14,4 +14,4 @@ comments: false
   desc="Life is nothing but an electron looking for a place to rest."
 >}}
 
-<p class="links-note">If you want to exchange links, feel free to contact me via <a href="https://github.com/Evan0571/Evan0571.github.io/issues">GitHub Issues</a>.</p>
+{{< links-note url="https://github.com/Evan0571/Evan0571.github.io/issues" >}}

@@ -248,8 +248,22 @@ h3 {
 }
 
 .post-content .links-note {
-  margin: 0 0 var(--space-3);
-  color: var(--secondary);
+  margin: calc(-1 * var(--space-2)) 0 var(--space-3);
+  color: var(--secondary, rgba(0, 0, 0, 0.65));
+}
+
+.dark .post-content .links-note {
+  color: var(--secondary, rgba(255, 255, 255, 0.72));
+}
+
+/* Links-page local fix: hide or soften unexpected divider under friend card */
+.post-content .friend-card + hr,
+.post-content .links-note + hr {
+  display: none;
+}
+
+.post-content .friend-card + *[style*="border-top"] {
+  border-top-color: rgba(0, 0, 0, 0.08) !important;
 }
 
 .friend-card-link {
