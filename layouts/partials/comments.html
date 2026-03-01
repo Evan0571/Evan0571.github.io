@@ -17,6 +17,28 @@
     crossorigin="anonymous"
     async>
   </script>
+  <script>
+    (function () {
+      function currentTheme() {
+        return document.body.classList.contains("dark") ? "dark" : "light";
+      }
+      function syncGiscusTheme() {
+        var iframe = document.querySelector("iframe.giscus-frame");
+        if (!iframe) return;
+        iframe.contentWindow.postMessage(
+          { giscus: { setConfig: { theme: currentTheme() } } },
+          "https://giscus.app"
+        );
+      }
+      var observer = new MutationObserver(syncGiscusTheme);
+      observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+      document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(syncGiscusTheme, 300);
+      });
+      var toggle = document.getElementById("theme-toggle");
+      if (toggle) toggle.addEventListener("click", function () { setTimeout(syncGiscusTheme, 120); });
+    })();
+  </script>
 </section>
 {{- else if hugo.IsServer -}}
 <section class="comments giscus-wrap">
