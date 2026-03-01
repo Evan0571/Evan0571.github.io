@@ -1,0 +1,15 @@
+<div class="visit-counter" aria-label="Site view counter">
+  <span id="busuanzi_container_site_uv">Visitors: <span id="busuanzi_value_site_uv"></span></span>
+  <span id="busuanzi_container_site_pv">Views: <span id="busuanzi_value_site_pv"></span></span>
+  <span id="busuanzi_container_page_pv">Page Views: <span id="busuanzi_value_page_pv"></span></span>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var pagePv = document.getElementById("busuanzi_container_page_pv");
+    if (!document.querySelector(".post-single") && pagePv) {
+      pagePv.style.display = "none";
+    }
+  });
+</script>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
