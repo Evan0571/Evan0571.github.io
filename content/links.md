@@ -1,11 +1,11 @@
 ---
-title: "Friends"
-date: 2026-03-01T12:00:00+08:00
+title: "Links"
 draft: false
-description: "Friendly blogs and resources"
+hideMeta: true
+comments: false
 ---
 
-## Friend Links
+## Link Exchange
 
 Coming soon.
 
