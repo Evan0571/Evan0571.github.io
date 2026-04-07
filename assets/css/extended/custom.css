@@ -240,10 +240,45 @@ h3 {
 }
 
 /* Per-post image sizing for photo-heavy travel entries */
+.post-single.post-images-compact .post-content {
+  --travel-photo-gap: 1rem;
+  --travel-photo-max: 460px;
+}
+
 .post-single.post-images-compact .post-content img {
   display: block;
-  width: min(100%, 560px);
+  width: min(100%, var(--travel-photo-max));
+  margin: 0 auto;
+  border-radius: 12px;
+}
+
+.post-single.post-images-compact .post-content p:has(> img:only-child) {
+  width: min(100%, var(--travel-photo-max));
   margin: 1rem auto;
+}
+
+.post-single.post-images-compact .post-content p:has(> img:only-child):has(+ p > img:only-child),
+.post-single.post-images-compact .post-content p:has(> img:only-child) + p:has(> img:only-child) {
+  display: inline-block;
+  width: 48.5%;
+  margin: 0 0 var(--travel-photo-gap);
+  vertical-align: top;
+}
+
+.post-single.post-images-compact .post-content p:has(> img:only-child) > img {
+  display: block;
+  width: 100%;
+  margin: 0;
+}
+
+@media (max-width: 760px) {
+  .post-single.post-images-compact .post-content p:has(> img:only-child),
+  .post-single.post-images-compact .post-content p:has(> img:only-child):has(+ p > img:only-child),
+  .post-single.post-images-compact .post-content p:has(> img:only-child) + p:has(> img:only-child) {
+    display: block;
+    width: 100%;
+    margin: 1rem 0;
+  }
 }
 
 /* Friend links card */
