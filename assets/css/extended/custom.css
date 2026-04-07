@@ -239,6 +239,13 @@ h3 {
   white-space: nowrap;
 }
 
+/* Per-post image sizing for photo-heavy travel entries */
+.post-single.post-images-compact .post-content img {
+  display: block;
+  width: min(100%, 560px);
+  margin: 1rem auto;
+}
+
 /* Friend links card */
 .friend-card {
   margin: 0 0 var(--space-3);
