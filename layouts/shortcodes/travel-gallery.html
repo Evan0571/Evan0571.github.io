@@ -1,0 +1,9 @@
+{{- $items := split (replace .Inner "\r\n" "\n") "\n" -}}
+<div class="travel-gallery{{ with .Get "class" }} {{ . }}{{ end }}">
+  {{- range $items -}}
+    {{- $item := trim . " \r\n\t" -}}
+    {{- if $item -}}
+      {{- $item | markdownify -}}
+    {{- end -}}
+  {{- end -}}
+</div>
