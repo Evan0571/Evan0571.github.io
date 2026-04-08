@@ -260,7 +260,7 @@ h3 {
 /* Per-post image sizing for photo-heavy travel entries */
 .post-single.post-images-compact .post-content {
   --travel-photo-gap: 0.85rem;
-  --travel-photo-max: 17.5rem;
+  --travel-photo-max: 22rem;
   --travel-gallery-max: 42rem;
   --travel-gallery-card-bg: color-mix(in srgb, var(--entry) 95%, white 5%);
   --travel-photo-frame: color-mix(in srgb, var(--secondary) 18%, transparent 82%);
