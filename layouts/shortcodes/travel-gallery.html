@@ -3,7 +3,9 @@
   {{- range $items -}}
     {{- $item := trim . " \r\n\t" -}}
     {{- if $item -}}
-      {{- $item | markdownify -}}
+      <div class="travel-gallery-item">
+        {{- $item | markdownify -}}
+      </div>
     {{- end -}}
   {{- end -}}
 </div>
