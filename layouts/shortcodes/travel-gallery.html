@@ -1,11 +1,33 @@
-{{- $items := split (replace .Inner "\r\n" "\n") "\n" -}}
-<div class="travel-gallery{{ with .Get "class" }} {{ . }}{{ end }}">
-  {{- range $items -}}
-    {{- $item := trim . " \r\n\t" -}}
-    {{- if $item -}}
-      <div class="travel-gallery-item">
+{{- $rawItems := split (replace .Inner "\r\n" "\n") "\n" -}}
+{{- $items := slice -}}
+{{- range $rawItems -}}
+  {{- $item := trim . " \r\n\t" -}}
+  {{- if $item -}}
+    {{- $items = $items | append $item -}}
+  {{- end -}}
+{{- end -}}
+<div
+  class="travel-gallery{{ with .Get "class" }} {{ . }}{{ end }}"
+  data-travel-gallery
+  data-gallery-count="{{ len $items }}">
+  <div class="travel-gallery-stage" tabindex="0">
+    {{- range $index, $item := $items -}}
+      <div class="travel-gallery-item" data-gallery-item data-index="{{ $index }}">
         {{- $item | markdownify -}}
       </div>
     {{- end -}}
+  </div>
+  {{- if gt (len $items) 1 -}}
+    <div class="travel-gallery-controls" aria-label="Photo carousel controls">
+      <div class="travel-gallery-status" data-gallery-status>1 / {{ len $items }}</div>
+      <div class="travel-gallery-buttons">
+        <button class="travel-gallery-button" type="button" data-gallery-prev aria-label="Show previous photo">
+          <span aria-hidden="true">&larr;</span>
+        </button>
+        <button class="travel-gallery-button" type="button" data-gallery-next aria-label="Show next photo">
+          <span aria-hidden="true">&rarr;</span>
+        </button>
+      </div>
+    </div>
   {{- end -}}
 </div>

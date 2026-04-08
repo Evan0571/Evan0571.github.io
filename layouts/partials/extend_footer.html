@@ -1,0 +1,2 @@
+{{- $travelGallery := resources.Get "js/travel-gallery.js" | resources.Minify | fingerprint -}}
+<script defer src="{{ $travelGallery.RelPermalink }}" integrity="{{ $travelGallery.Data.Integrity }}"></script>

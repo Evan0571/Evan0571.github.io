@@ -261,7 +261,8 @@ h3 {
 .post-single.post-images-compact .post-content {
   --travel-photo-gap: 0.85rem;
   --travel-photo-max: 22rem;
-  --travel-gallery-max: 46rem;
+  --travel-gallery-max: 42rem;
+  --travel-gallery-card-bg: color-mix(in srgb, var(--entry) 95%, white 5%);
   --travel-photo-frame: color-mix(in srgb, var(--secondary) 18%, transparent 82%);
 }
 
@@ -288,48 +289,174 @@ h3 {
 
 .post-single.post-images-compact .post-content .travel-gallery {
   max-width: min(100%, var(--travel-gallery-max));
-  margin: 1rem auto 1.5rem;
-  columns: 2 15rem;
-  column-gap: var(--travel-photo-gap);
+  margin: 1.2rem auto 1.85rem;
 }
 
-.post-single.post-images-compact .post-content .travel-gallery > .travel-gallery-item {
-  display: inline-block;
-  width: 100%;
-  break-inside: avoid;
+.post-single.post-images-compact .post-content .travel-gallery-stage > .travel-gallery-item {
   margin: 0 0 var(--travel-photo-gap);
 }
 
-.post-single.post-images-compact .post-content .travel-gallery > .travel-gallery-item > * {
+.post-single.post-images-compact .post-content .travel-gallery-stage {
+  position: relative;
+  width: min(100%, 31rem);
+  margin: 0 auto;
+}
+
+.post-single.post-images-compact .post-content .travel-gallery:not([data-enhanced="true"]) .travel-gallery-controls {
+  display: none;
+}
+
+.post-single.post-images-compact .post-content .travel-gallery[data-enhanced="true"] .travel-gallery-stage > .travel-gallery-item {
+  margin: 0;
+}
+
+.post-single.post-images-compact .post-content .travel-gallery[data-enhanced="true"] .travel-gallery-item {
+  position: absolute;
+  inset: 0;
+  transition:
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.38s ease,
+    filter 0.38s ease;
+  transform-origin: center top;
+  pointer-events: none;
+}
+
+.post-single.post-images-compact .post-content .travel-gallery[data-enhanced="true"] .travel-gallery-stage {
+  transition: height 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  overflow: visible;
+}
+
+.post-single.post-images-compact .post-content .travel-gallery[data-enhanced="true"] .travel-gallery-item[data-state="active"] {
+  transform: translate3d(0, 0, 0) scale(1);
+  opacity: 1;
+  filter: none;
+  z-index: 4;
+  pointer-events: auto;
+}
+
+.post-single.post-images-compact .post-content .travel-gallery[data-enhanced="true"] .travel-gallery-item[data-state="next"] {
+  transform: translate3d(24px, 18px, 0) scale(0.965);
+  opacity: 0.92;
+  filter: saturate(0.9) brightness(0.98);
+  z-index: 3;
+}
+
+.post-single.post-images-compact .post-content .travel-gallery[data-enhanced="true"] .travel-gallery-item[data-state="next-2"] {
+  transform: translate3d(46px, 34px, 0) scale(0.925);
+  opacity: 0.72;
+  filter: saturate(0.82) brightness(0.95);
+  z-index: 2;
+}
+
+.post-single.post-images-compact .post-content .travel-gallery[data-enhanced="true"] .travel-gallery-item[data-state="prev"] {
+  transform: translate3d(-36px, 18px, 0) scale(0.94);
+  opacity: 0;
+  filter: blur(2px);
+  z-index: 1;
+}
+
+.post-single.post-images-compact .post-content .travel-gallery[data-enhanced="true"] .travel-gallery-item[data-state="hidden"] {
+  transform: translate3d(68px, 48px, 0) scale(0.9);
+  opacity: 0;
+  filter: blur(2px);
+  z-index: 1;
+}
+
+.post-single.post-images-compact .post-content .travel-gallery-item > * {
   margin-top: 0;
   margin-bottom: 0;
 }
 
-.post-single.post-images-compact .post-content .travel-gallery > .travel-gallery-item > img,
-.post-single.post-images-compact .post-content .travel-gallery > .travel-gallery-item > p > img,
-.post-single.post-images-compact .post-content .travel-gallery > .travel-gallery-item > figure.post-image > img {
-  width: 100%;
-  max-width: none;
-  max-height: none;
-  margin: 0;
+.post-single.post-images-compact .post-content .travel-gallery-item > figure.post-image,
+.post-single.post-images-compact .post-content .travel-gallery-item > p {
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.post-single.post-images-compact .post-content .travel-gallery-item > figure.post-image {
+  padding: 0.75rem 0.75rem 0.9rem;
+  border-radius: 24px;
+  background: var(--travel-gallery-card-bg);
+  border: 1px solid var(--travel-photo-frame);
+  box-shadow:
+    0 20px 45px rgba(15, 23, 42, 0.14),
+    0 2px 10px rgba(15, 23, 42, 0.08);
+}
+
+.post-single.post-images-compact .post-content .travel-gallery-item > figure.post-image > img,
+.post-single.post-images-compact .post-content .travel-gallery-item > p > img {
   display: block;
-  border-radius: 14px;
+  width: auto;
+  max-width: min(100%, 28rem);
+  max-height: 30rem;
+  margin: 0 auto;
+  border-radius: 18px;
   border: 1px solid var(--travel-photo-frame);
 }
 
-.post-single.post-images-compact .post-content .travel-gallery > .travel-gallery-item > figure.post-image {
-  width: 100%;
-  max-width: none;
-  margin: 0;
+.post-single.post-images-compact .post-content .travel-gallery-item > figure.post-image > figcaption {
+  max-width: min(100%, 28rem);
+  margin: 0.55rem auto 0;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
 }
 
-.post-single.post-images-compact .post-content .travel-gallery > .travel-gallery-item > p {
-  margin: 0;
+.post-single.post-images-compact .post-content .travel-gallery[data-enhanced="true"] .travel-gallery-item:not([data-state="active"]) > figure.post-image > figcaption {
+  opacity: 0;
+  transform: translateY(6px);
 }
 
-.post-single.post-images-compact .post-content .travel-gallery > .travel-gallery-item > figure.post-image > figcaption {
-  max-width: none;
-  margin: 0.45rem 0 0;
+.post-single.post-images-compact .post-content .travel-gallery-controls {
+  width: min(100%, 31rem);
+  margin: 1rem auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.post-single.post-images-compact .post-content .travel-gallery-status {
+  font-size: 0.76rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--secondary);
+}
+
+.post-single.post-images-compact .post-content .travel-gallery-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.post-single.post-images-compact .post-content .travel-gallery-button {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--travel-photo-frame);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--entry) 92%, white 8%);
+  color: var(--primary);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    background-color 0.18s ease;
+}
+
+.post-single.post-images-compact .post-content .travel-gallery-button:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--secondary) 34%, transparent 66%);
+  background: color-mix(in srgb, var(--entry) 84%, white 16%);
+}
+
+.post-single.post-images-compact .post-content .travel-gallery-button:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--primary) 52%, transparent 48%);
+  outline-offset: 2px;
+}
+
+.post-single.post-images-compact .post-content .travel-gallery[data-gallery-count="1"] .travel-gallery-controls {
+  display: none;
 }
 
 @media (max-width: 760px) {
@@ -342,8 +469,36 @@ h3 {
     max-height: none;
   }
 
-  .post-single.post-images-compact .post-content .travel-gallery {
-    columns: 1;
+  .post-single.post-images-compact .post-content .travel-gallery-stage,
+  .post-single.post-images-compact .post-content .travel-gallery-controls {
+    width: min(100%, 24rem);
+  }
+
+  .post-single.post-images-compact .post-content .travel-gallery[data-enhanced="true"] .travel-gallery-item[data-state="next"] {
+    transform: translate3d(16px, 12px, 0) scale(0.97);
+  }
+
+  .post-single.post-images-compact .post-content .travel-gallery[data-enhanced="true"] .travel-gallery-item[data-state="next-2"] {
+    transform: translate3d(28px, 22px, 0) scale(0.94);
+  }
+
+  .post-single.post-images-compact .post-content .travel-gallery-item > figure.post-image {
+    padding: 0.6rem 0.6rem 0.8rem;
+    border-radius: 20px;
+  }
+
+  .post-single.post-images-compact .post-content .travel-gallery-item > figure.post-image > img,
+  .post-single.post-images-compact .post-content .travel-gallery-item > p > img {
+    max-width: min(100%, 22rem);
+    max-height: 24rem;
+  }
+
+  .post-single.post-images-compact .post-content .travel-gallery-controls {
+    gap: 0.8rem;
+  }
+
+  .post-single.post-images-compact .post-content .travel-gallery-status {
+    font-size: 0.72rem;
   }
 }
 
