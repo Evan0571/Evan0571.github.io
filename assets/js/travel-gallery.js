@@ -19,18 +19,25 @@
 
     let activeIndex = 0;
     gallery.dataset.enhanced = "true";
-    const getStackDepth = () => (window.matchMedia("(max-width: 760px)").matches ? 30 : 46);
-
     const syncHeight = () => {
-      const activeItem = items[activeIndex];
-      if (!activeItem) {
+      const stageRect = stage.getBoundingClientRect();
+      if (!stageRect.width) {
         return;
       }
-      const nextLayer = items.find((item) => item.dataset.state === "next");
-      const nextTwoLayer = items.find((item) => item.dataset.state === "next-2");
-      const activeHeight = activeItem.getBoundingClientRect().height;
-      const stackDepth = nextLayer || nextTwoLayer ? getStackDepth() : 0;
-      stage.style.height = `${Math.ceil(activeHeight + stackDepth)}px`;
+
+      const visibleItems = items.filter((item) => {
+        const state = item.dataset.state;
+        return state === "active" || state === "next" || state === "next-2";
+      });
+
+      let maxBottom = 0;
+      visibleItems.forEach((item) => {
+        const rect = item.getBoundingClientRect();
+        maxBottom = Math.max(maxBottom, rect.bottom - stageRect.top);
+      });
+
+      const fallbackHeight = items[activeIndex]?.getBoundingClientRect().height ?? 0;
+      stage.style.height = `${Math.ceil(maxBottom || fallbackHeight)}px`;
     };
 
     const applyState = () => {
