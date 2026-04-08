@@ -312,6 +312,12 @@ h3 {
   border: 1px solid var(--travel-photo-frame);
 }
 
+.post-single.post-images-compact .post-content figure.post-image > img,
+.post-single.post-images-compact .post-content p:has(> img:only-child) > img,
+.post-single.post-images-compact .post-content .travel-gallery-item img {
+  cursor: zoom-in;
+}
+
 .post-single.post-images-compact .post-content figure.post-image > figcaption {
   max-width: min(100%, var(--travel-photo-max) + 0.2rem);
   margin: 0.55rem auto 0;
@@ -486,6 +492,81 @@ h3 {
   display: none;
 }
 
+body.travel-lightbox-open {
+  overflow: hidden;
+}
+
+.travel-lightbox[aria-hidden="true"] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.travel-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  opacity: 1;
+  transition: opacity 0.22s ease;
+}
+
+.travel-lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 14, 22, 0.72);
+  backdrop-filter: blur(10px);
+}
+
+.travel-lightbox-dialog {
+  position: relative;
+  z-index: 1;
+  max-width: min(92vw, 72rem);
+  max-height: 88vh;
+  padding: 0.85rem 0.85rem 1rem;
+  border-radius: 28px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.985), rgba(247, 245, 241, 0.97));
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.28);
+}
+
+.travel-lightbox-media {
+  display: block;
+  max-width: min(88vw, 68rem);
+  max-height: calc(88vh - 5rem);
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 22px;
+}
+
+.travel-lightbox-caption {
+  margin: 0.75rem auto 0;
+  max-width: min(88vw, 52rem);
+  text-align: center;
+  color: var(--secondary);
+}
+
+.travel-lightbox-caption:empty {
+  display: none;
+}
+
+.travel-lightbox-close {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  z-index: 2;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid color-mix(in srgb, var(--secondary) 16%, transparent 84%);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.84);
+  color: var(--primary);
+  backdrop-filter: blur(10px);
+}
+
 @media (max-width: 760px) {
   .post-single.post-images-compact .post-content figure.post-image {
     margin: 0.9rem 0 1.1rem;
@@ -543,6 +624,29 @@ h3 {
   .post-single.post-images-compact .post-content .travel-gallery-button {
     width: 2rem;
     height: 2rem;
+  }
+
+  .travel-lightbox {
+    padding: 1rem;
+  }
+
+  .travel-lightbox-dialog {
+    width: min(92vw, 28rem);
+    padding: 0.7rem 0.7rem 0.85rem;
+    border-radius: 22px;
+  }
+
+  .travel-lightbox-media {
+    max-width: 100%;
+    max-height: calc(84vh - 4.5rem);
+    border-radius: 16px;
+  }
+
+  .travel-lightbox-close {
+    top: 0.65rem;
+    right: 0.65rem;
+    width: 2.2rem;
+    height: 2.2rem;
   }
 }
 

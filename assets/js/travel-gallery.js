@@ -1,4 +1,67 @@
 (() => {
+  const compactPost = document.querySelector(".post-single.post-images-compact .post-content");
+
+  const createLightbox = () => {
+    const overlay = document.createElement("div");
+    overlay.className = "travel-lightbox";
+    overlay.setAttribute("aria-hidden", "true");
+    overlay.innerHTML = `
+      <div class="travel-lightbox-backdrop" data-lightbox-close></div>
+      <div class="travel-lightbox-dialog" role="dialog" aria-modal="true" aria-label="Expanded photo view">
+        <button class="travel-lightbox-close" type="button" aria-label="Close expanded photo" data-lightbox-close>&times;</button>
+        <img class="travel-lightbox-media" alt="">
+        <div class="travel-lightbox-caption"></div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+
+    const media = overlay.querySelector(".travel-lightbox-media");
+    const caption = overlay.querySelector(".travel-lightbox-caption");
+
+    const close = () => {
+      overlay.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("travel-lightbox-open");
+      media.removeAttribute("src");
+      media.alt = "";
+      caption.textContent = "";
+    };
+
+    const open = (image) => {
+      const figureCaption = image.closest("figure")?.querySelector("figcaption");
+      const text = figureCaption?.textContent?.trim() || image.alt || "";
+      media.src = image.currentSrc || image.src;
+      media.alt = image.alt || "";
+      caption.textContent = text;
+      overlay.setAttribute("aria-hidden", "false");
+      document.body.classList.add("travel-lightbox-open");
+    };
+
+    overlay.addEventListener("click", (event) => {
+      if (event.target instanceof HTMLElement && event.target.closest("[data-lightbox-close]")) {
+        close();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && overlay.getAttribute("aria-hidden") === "false") {
+        close();
+      }
+    });
+
+    return { open };
+  };
+
+  if (compactPost) {
+    const lightbox = createLightbox();
+    compactPost
+      .querySelectorAll("figure.post-image > img, p:has(> img:only-child) > img, .travel-gallery-item img")
+      .forEach((image) => {
+        image.addEventListener("click", () => {
+          lightbox.open(image);
+        });
+      });
+  }
+
   const galleries = document.querySelectorAll("[data-travel-gallery]");
   if (!galleries.length) {
     return;
