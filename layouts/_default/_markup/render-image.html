@@ -27,8 +27,10 @@
       {{- end -}}>
     {{- if .Title -}}
       <figcaption><p>{{ .Title }}</p></figcaption>
-    {{- else with .Text -}}
-      <figcaption><p>{{ . }}</p></figcaption>
+    {{- else -}}
+      {{- with .Text -}}
+        <figcaption><p>{{ . }}</p></figcaption>
+      {{- end -}}
     {{- end -}}
   </figure>
 {{- else -}}
