@@ -298,7 +298,7 @@ h3 {
 
 .post-single.post-images-compact .post-content .travel-gallery-stage {
   position: relative;
-  width: min(100%, 31rem);
+  width: min(100%, 34rem);
   margin: 0 auto;
 }
 
@@ -311,8 +311,7 @@ h3 {
 }
 
 .post-single.post-images-compact .post-content .travel-gallery[data-enhanced="true"] .travel-gallery-item {
-  position: absolute;
-  inset: 0;
+  grid-area: 1 / 1;
   transition:
     transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
     opacity 0.38s ease,
@@ -322,6 +321,10 @@ h3 {
 }
 
 .post-single.post-images-compact .post-content .travel-gallery[data-enhanced="true"] .travel-gallery-stage {
+  display: grid;
+  justify-items: center;
+  align-items: start;
+  padding: 0 2.9rem 2.8rem 0;
   transition: height 0.45s cubic-bezier(0.22, 1, 0.36, 1);
   overflow: visible;
 }
@@ -409,8 +412,8 @@ h3 {
 }
 
 .post-single.post-images-compact .post-content .travel-gallery-controls {
-  width: min(100%, 31rem);
-  margin: 1rem auto 0;
+  width: min(100%, 34rem);
+  margin: 0.35rem auto 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -471,7 +474,7 @@ h3 {
 
   .post-single.post-images-compact .post-content .travel-gallery-stage,
   .post-single.post-images-compact .post-content .travel-gallery-controls {
-    width: min(100%, 24rem);
+    width: min(100%, 25rem);
   }
 
   .post-single.post-images-compact .post-content .travel-gallery[data-enhanced="true"] .travel-gallery-item[data-state="next"] {
@@ -485,6 +488,10 @@ h3 {
   .post-single.post-images-compact .post-content .travel-gallery-item > figure.post-image {
     padding: 0.6rem 0.6rem 0.8rem;
     border-radius: 20px;
+  }
+
+  .post-single.post-images-compact .post-content .travel-gallery[data-enhanced="true"] .travel-gallery-stage {
+    padding: 0 1.9rem 1.9rem 0;
   }
 
   .post-single.post-images-compact .post-content .travel-gallery-item > figure.post-image > img,

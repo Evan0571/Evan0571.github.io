@@ -19,13 +19,18 @@
 
     let activeIndex = 0;
     gallery.dataset.enhanced = "true";
+    const getStackDepth = () => (window.matchMedia("(max-width: 760px)").matches ? 30 : 46);
 
     const syncHeight = () => {
       const activeItem = items[activeIndex];
       if (!activeItem) {
         return;
       }
-      stage.style.height = `${activeItem.offsetHeight}px`;
+      const nextLayer = items.find((item) => item.dataset.state === "next");
+      const nextTwoLayer = items.find((item) => item.dataset.state === "next-2");
+      const activeHeight = activeItem.getBoundingClientRect().height;
+      const stackDepth = nextLayer || nextTwoLayer ? getStackDepth() : 0;
+      stage.style.height = `${Math.ceil(activeHeight + stackDepth)}px`;
     };
 
     const applyState = () => {
@@ -111,6 +116,15 @@
     } else {
       window.addEventListener("resize", syncHeight, { passive: true });
     }
+
+    gallery.querySelectorAll("img").forEach((image) => {
+      if (image.complete) {
+        return;
+      }
+
+      image.addEventListener("load", syncHeight, { once: false });
+      image.addEventListener("error", syncHeight, { once: false });
+    });
 
     applyState();
   });
