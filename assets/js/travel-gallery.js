@@ -30,14 +30,14 @@
       }
 
       const stageRect = stage.getBoundingClientRect();
-      const activeRect = activeItem.getBoundingClientRect();
+      const media = activeItem.querySelector("img") ?? activeItem;
+      const activeRect = media.getBoundingClientRect();
       const buttonWidth = previousButton.getBoundingClientRect().width || 36;
       const buttonRadius = buttonWidth / 2;
-      const edgeGap = window.matchMedia("(max-width: 760px)").matches ? 10 : 14;
-      const safeMargin = buttonRadius + 4;
+      const edgeGap = window.matchMedia("(max-width: 760px)").matches ? 12 : 18;
       const centerY = activeRect.top - stageRect.top + activeRect.height / 2;
-      const previousX = Math.max(safeMargin, activeRect.left - stageRect.left - buttonRadius - edgeGap);
-      const nextX = Math.min(stageRect.width - safeMargin, activeRect.right - stageRect.left + buttonRadius + edgeGap);
+      const previousX = activeRect.left - stageRect.left - buttonRadius - edgeGap;
+      const nextX = activeRect.right - stageRect.left + buttonRadius + edgeGap;
 
       previousButton.style.left = `${previousX}px`;
       nextButton.style.left = `${nextX}px`;
