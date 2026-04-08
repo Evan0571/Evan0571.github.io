@@ -239,6 +239,24 @@ h3 {
   white-space: nowrap;
 }
 
+.post-content figure.post-image {
+  margin: 1rem 0 1.4rem;
+}
+
+.post-content figure.post-image > img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.post-content figure.post-image > figcaption {
+  text-align: center;
+}
+
+.post-content figure.post-image > figcaption > p {
+  margin: 0;
+}
+
 /* Per-post image sizing for photo-heavy travel entries */
 .post-single.post-images-compact .post-content {
   --travel-photo-gap: 0.85rem;
@@ -247,13 +265,13 @@ h3 {
   --travel-photo-frame: color-mix(in srgb, var(--secondary) 18%, transparent 82%);
 }
 
-.post-single.post-images-compact .post-content p:has(> img:only-child) {
+.post-single.post-images-compact .post-content figure.post-image {
   width: fit-content;
   max-width: 100%;
   margin: 0.95rem auto 1.2rem;
 }
 
-.post-single.post-images-compact .post-content p:has(> img:only-child) > img {
+.post-single.post-images-compact .post-content figure.post-image > img {
   display: block;
   width: auto;
   max-width: min(100%, var(--travel-photo-max));
@@ -263,6 +281,11 @@ h3 {
   border: 1px solid var(--travel-photo-frame);
 }
 
+.post-single.post-images-compact .post-content figure.post-image > figcaption {
+  max-width: min(100%, var(--travel-photo-max));
+  margin: 0.45rem auto 0;
+}
+
 .post-single.post-images-compact .post-content .travel-gallery {
   max-width: min(100%, var(--travel-gallery-max));
   margin: 1rem auto 1.5rem;
@@ -270,26 +293,31 @@ h3 {
   column-gap: var(--travel-photo-gap);
 }
 
-.post-single.post-images-compact .post-content .travel-gallery > p {
+.post-single.post-images-compact .post-content .travel-gallery > figure.post-image {
   display: inline-block;
   width: 100%;
   break-inside: avoid;
   margin: 0 0 var(--travel-photo-gap);
 }
 
-.post-single.post-images-compact .post-content .travel-gallery > p > img {
+.post-single.post-images-compact .post-content .travel-gallery > figure.post-image > img {
   width: 100%;
   max-width: none;
   max-height: none;
   margin: 0;
 }
 
+.post-single.post-images-compact .post-content .travel-gallery > figure.post-image > figcaption {
+  max-width: none;
+  margin: 0.45rem 0 0;
+}
+
 @media (max-width: 760px) {
-  .post-single.post-images-compact .post-content p:has(> img:only-child) {
+  .post-single.post-images-compact .post-content figure.post-image {
     margin: 0.9rem 0 1.1rem;
   }
 
-  .post-single.post-images-compact .post-content p:has(> img:only-child) > img {
+  .post-single.post-images-compact .post-content figure.post-image > img {
     max-width: 100%;
     max-height: none;
   }
