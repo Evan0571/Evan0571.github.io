@@ -16,18 +16,15 @@
         {{- $item | markdownify -}}
       </div>
     {{- end -}}
-  </div>
-  {{- if gt (len $items) 1 -}}
-    <div class="travel-gallery-controls" aria-label="Photo carousel controls">
-      <div class="travel-gallery-status" data-gallery-status>1 / {{ len $items }}</div>
-      <div class="travel-gallery-buttons">
-        <button class="travel-gallery-button" type="button" data-gallery-prev aria-label="Show previous photo">
+    {{- if gt (len $items) 1 -}}
+      <div class="travel-gallery-controls" aria-label="Photo carousel controls">
+        <button class="travel-gallery-button travel-gallery-button-prev" type="button" data-gallery-prev aria-label="Show previous photo">
           <span aria-hidden="true">&larr;</span>
         </button>
-        <button class="travel-gallery-button" type="button" data-gallery-next aria-label="Show next photo">
+        <button class="travel-gallery-button travel-gallery-button-next" type="button" data-gallery-next aria-label="Show next photo">
           <span aria-hidden="true">&rarr;</span>
         </button>
       </div>
-    </div>
-  {{- end -}}
+    {{- end -}}
+  </div>
 </div>

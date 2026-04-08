@@ -11,7 +11,6 @@
     const items = Array.from(gallery.querySelectorAll("[data-gallery-item]"));
     const previousButton = gallery.querySelector("[data-gallery-prev]");
     const nextButton = gallery.querySelector("[data-gallery-next]");
-    const status = gallery.querySelector("[data-gallery-status]");
 
     if (!stage || !items.length) {
       return;
@@ -61,10 +60,6 @@
         item.dataset.state = state;
         item.setAttribute("aria-hidden", state === "active" ? "false" : "true");
       });
-
-      if (status) {
-        status.textContent = `${activeIndex + 1} / ${count}`;
-      }
 
       syncHeight();
     };
