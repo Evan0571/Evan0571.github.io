@@ -13,21 +13,29 @@
   {{- end -}}
 {{- end -}}
 
-{{- $alt := .Text | plainify -}}
-{{- $caption := .Title | default .Text -}}
-{{- $attributes := merge .Attributes (dict "alt" $alt "src" $src "loading" "lazy") -}}
+{{- $attributes := merge .Attributes (dict "alt" .PlainText "src" $src "loading" "lazy") -}}
 {{- with .Title -}}
   {{- $attributes = merge $attributes (dict "title" (. | transform.HTMLEscape)) -}}
 {{- end -}}
-
-<figure class="post-image">
+{{- if .IsBlock -}}
+  <figure class="post-image">
+    <img
+      {{- range $k, $v := $attributes -}}
+        {{- if $v -}}
+          {{- printf " %s=%q" $k $v | safeHTMLAttr -}}
+        {{- end -}}
+      {{- end -}}>
+    {{- if .Title -}}
+      <figcaption><p>{{ .Title }}</p></figcaption>
+    {{- else with .Text -}}
+      <figcaption><p>{{ . }}</p></figcaption>
+    {{- end -}}
+  </figure>
+{{- else -}}
   <img
     {{- range $k, $v := $attributes -}}
       {{- if $v -}}
         {{- printf " %s=%q" $k $v | safeHTMLAttr -}}
       {{- end -}}
     {{- end -}}>
-  {{- with $caption }}
-    <figcaption><p>{{ . | markdownify }}</p></figcaption>
-  {{- end -}}
-</figure>
+{{- end -}}

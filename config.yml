@@ -17,6 +17,8 @@ minify:
 
 markup:
   goldmark:
+    parser:
+      wrapStandAloneImageWithinParagraph: false
     renderer:
       unsafe: true
 
