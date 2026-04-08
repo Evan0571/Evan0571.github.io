@@ -34,10 +34,11 @@
       const activeRect = media.getBoundingClientRect();
       const buttonWidth = previousButton.getBoundingClientRect().width || 36;
       const buttonRadius = buttonWidth / 2;
-      const edgeGap = window.matchMedia("(max-width: 760px)").matches ? 12 : 18;
+      const edgeGap = window.matchMedia("(max-width: 760px)").matches ? 22 : 32;
+      const minInset = window.matchMedia("(max-width: 760px)").matches ? 6 : 10;
       const centerY = activeRect.top - stageRect.top + activeRect.height / 2;
-      const previousX = activeRect.left - stageRect.left - buttonRadius - edgeGap;
-      const nextX = activeRect.right - stageRect.left + buttonRadius + edgeGap;
+      const previousX = Math.max(minInset + buttonRadius, activeRect.left - stageRect.left - buttonRadius - edgeGap);
+      const nextX = Math.min(stageRect.width - minInset - buttonRadius, activeRect.right - stageRect.left + buttonRadius + edgeGap);
 
       previousButton.style.left = `${previousX}px`;
       nextButton.style.left = `${nextX}px`;
