@@ -63,4 +63,21 @@
     {{- end }}
   </div>
 </section>
+
+{{- with site.Taxonomies.tags }}
+<section class="topics-section">
+  <header class="section-head">
+    <h2>Browse tags</h2>
+    <a href="{{ "/tags/" | relURL }}" class="section-link">All tags</a>
+  </header>
+  <p class="topics-copy">Prefer exploring by topic? Start from the tags I use most often.</p>
+  <ul class="terms-tags home-tags">
+    {{- range first 8 .ByCount }}
+    <li>
+      <a href="{{ .Page.RelPermalink }}">{{ .Page.Title }} <sup>{{ .Count }}</sup></a>
+    </li>
+    {{- end }}
+  </ul>
+</section>
+{{- end }}
 {{- end }}
