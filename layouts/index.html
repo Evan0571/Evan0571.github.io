@@ -52,7 +52,7 @@
     <article class="recent-item">
       <h3 class="recent-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
       <time class="recent-date" datetime="{{ .Date.Format `2006-01-02` }}">{{ .Date | time.Format "2006-01-02" }}</time>
-      <p class="recent-summary">{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p>
+      <p class="recent-summary">{{ partial "post_summary.html" . }}</p>
     </article>
     {{- else }}
     <article class="recent-item">

@@ -1,0 +1,14 @@
+{{- $summary := "" -}}
+
+{{- with .Params.summary -}}
+  {{- $summary = . | plainify | htmlUnescape | chomp -}}
+{{- else -}}
+  {{- $plain := .Plain | htmlUnescape | replaceRE "\\s+" " " | chomp -}}
+  {{- if gt (len $plain) 0 -}}
+    {{- $summary = $plain | truncate 96 -}}
+  {{- else if .Description -}}
+    {{- $summary = .Description | plainify | htmlUnescape | chomp -}}
+  {{- end -}}
+{{- end -}}
+
+{{- return $summary -}}
